@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="머물다에서 취향에 맞는 국내 여행지와 주변 숙소를 발견하고 예약을 준비해 보세요."
+    />
+    <title>머물다 | 여행이 머무는 순간</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="css/common.css?v=4" />
+    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <script src="js/common.js?v=6" defer></script>
+    <script src="js/home.js" defer></script>
+    <script type="module" src="js/auth.js?v=4"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="머물다 홈">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" role="img">
+              <path d="M5 21.5c3.7-1.2 5.9-3.7 6.6-7.5.8 3.3 2.9 5.8 6.4 7.5M8 15.5c1-4 3-6.9 6-9 3 2.1 5 5 6 9" />
+            </svg>
+          </span>
+          <span>머물다</span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="sr-only">메뉴 열기</span>
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="primary-navigation" id="primary-navigation" aria-label="주요 메뉴">
+          <a href="#destinations">여행지</a>
+          <a href="#stays">숙소</a>
+          <a href="#how-it-works">이용 안내</a>
+          <a href="#journal">여행 노트</a>
+          <div class="header-actions" aria-label="회원 및 예약 메뉴">
+            <button class="button button-small button-reserve" type="button" data-auth-action="reserve">
+              예약
+            </button>
+            <button class="button button-small button-ghost" type="button" data-auth-action="signup">
+              회원가입
+            </button>
+            <button class="button button-small button-outline" type="button" data-auth-action="login">
+              로그인
+            </button>
+            <button class="button button-small button-ghost" type="button" data-auth-action="logout" hidden>
+              로그아웃
+            </button>
+            <button class="button button-small button-admin" type="button" data-auth-action="admin-login">
+              관리자
+            </button>
+            <button class="button button-small button-admin" type="button" data-auth-action="admin-logout" hidden>
+              관리자로그아웃
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="eyebrow light">TRAVEL, STAY, REMEMBER</p>
+          <h1 id="hero-title">여행이 머무는 순간,<br />당신만의 쉼을 찾다</h1>
+          <p class="hero-copy">
+            낯선 풍경과 다정한 공간을 한곳에서.<br class="desktop-only" />
+            지금 떠나고 싶은 여행지를 발견해 보세요.
+          </p>
+
+          <form class="search-panel" data-search-form novalidate>
+            <div class="search-field search-field-wide">
+              <label for="search-keyword">어디로 떠날까요?</label>
+              <div class="input-with-icon">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12Z" /><circle cx="12" cy="9" r="2.3" /></svg>
+                <input id="search-keyword" name="keyword" type="search" placeholder="여행지 또는 지역 검색" autocomplete="off" />
+              </div>
+            </div>
+            <div class="search-field">
+              <label for="check-in">체크인</label>
+              <input id="check-in" name="checkIn" type="date" />
+            </div>
+            <div class="search-field">
+              <label for="check-out">체크아웃</label>
+              <input id="check-out" name="checkOut" type="date" />
+            </div>
+            <div class="search-field search-field-guests">
+              <label for="guests">인원</label>
+              <select id="guests" name="guests">
+                <option value="1">1명</option>
+                <option value="2" selected>2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명 이상</option>
+              </select>
+            </div>
+            <button class="button button-primary search-button" type="submit">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
+              검색
+            </button>
+            <p class="form-message" data-search-message role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <a class="scroll-cue" href="#destinations">
+          <span>SCROLL</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+        </a>
+      </section>
+
+      <section class="section destinations-section" id="destinations" aria-labelledby="destinations-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow">CURATED DESTINATIONS</p>
+              <h2 id="destinations-title">지금, 마음이 향하는 곳</h2>
+              <p>계절의 결이 가장 아름다운 국내 여행지를 골라 소개합니다.</p>
+            </div>
+            <div class="region-tabs" role="group" aria-label="여행지 지역 필터">
+              <button class="region-tab is-active" type="button" data-region="all" aria-pressed="true">전체</button>
+              <button class="region-tab" type="button" data-region="island" aria-pressed="false">제주·섬</button>
+              <button class="region-tab" type="button" data-region="sea" aria-pressed="false">동해</button>
+              <button class="region-tab" type="button" data-region="history" aria-pressed="false">역사 도시</button>
+            </div>
+          </div>
+
+          <div class="destination-grid" data-destination-grid>
+            <article class="destination-card destination-card-large reveal" data-region="island" data-keywords="제주 서귀포 섬 바다 오름">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="잔잔한 파도와 맑은 바다가 펼쳐진 해변" />
+              <div class="card-shade"></div>
+              <div class="destination-content">
+                <span class="card-kicker">ISLAND ESCAPE</span>
+                <h3>제주, 바람이 쉬어가는 섬</h3>
+                <p>오름과 바다 사이, 느린 하루를 만나보세요.</p>
+                <button class="text-link light-link" type="button" data-coming-soon="여행지 상세 화면">여행지 둘러보기 <span>→</span></button>
+              </div>
+            </article>
+
+            <article class="destination-card reveal" data-region="sea" data-keywords="강릉 강원 동해 바다 커피">
+              <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="산과 호수가 어우러진 고요한 풍경" loading="lazy" />
+              <div class="card-shade"></div>
+              <div class="destination-content">
+                <span class="card-kicker">EAST COAST</span>
+                <h3>강릉, 파도 곁의 아침</h3>
+                <p>푸른 수평선과 커피 향을 따라 걷는 시간.</p>
+                <button class="card-arrow" type="button" data-coming-soon="여행지 상세 화면" aria-label="강릉 여행지 둘러보기">↗</button>
+              </div>
+            </article>
+
+            <article class="destination-card reveal" data-region="history" data-keywords="경주 경북 역사 한옥 고도">
+              <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="고즈넉한 전통 건축과 숲길" loading="lazy" />
+              <div class="card-shade"></div>
+              <div class="destination-content">
+                <span class="card-kicker">TIMELESS CITY</span>
+                <h3>경주, 시간을 걷는 도시</h3>
+                <p>오래된 풍경 속에서 발견하는 새로운 쉼.</p>
+                <button class="card-arrow" type="button" data-coming-soon="여행지 상세 화면" aria-label="경주 여행지 둘러보기">↗</button>
+              </div>
+            </article>
+          </div>
+          <p class="empty-result" data-empty-result hidden>검색 조건에 맞는 추천 여행지가 없습니다. 다른 지역 이름으로 검색해 보세요.</p>
+        </div>
+      </section>
+
+      <section class="section stay-section" id="stays" aria-labelledby="stays-title">
+        <div class="container stay-layout">
+          <div class="stay-image-wrap reveal">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="자연을 바라보는 차분하고 아늑한 숙소 내부" loading="lazy" />
+            <div class="stay-note">
+              <strong>쉼의 기준</strong>
+              <span>위치 · 분위기 · 편안함</span>
+            </div>
+          </div>
+          <div class="stay-copy reveal">
+            <p class="eyebrow">STAY COLLECTION</p>
+            <h2 id="stays-title">좋은 여행은<br />좋은 머무름에서 시작됩니다</h2>
+            <p>
+              여행지와 가까운 위치, 머무는 시간의 분위기, 꼭 필요한 편안함을 살펴
+              취향에 맞는 숙소를 찾을 수 있도록 준비하고 있습니다.
+            </p>
+            <ul class="stay-points">
+              <li><span>01</span><div><strong>여행지 중심 탐색</strong><small>가고 싶은 곳 주변의 숙소를 한눈에 확인</small></div></li>
+              <li><span>02</span><div><strong>명확한 예약 정보</strong><small>날짜, 인원, 신청 금액과 처리 상태를 투명하게 안내</small></div></li>
+              <li><span>03</span><div><strong>관리자 확인 후 확정</strong><small>예약 신청 후 숙소 가능 여부를 확인해 최종 확정</small></div></li>
+            </ul>
+            <button class="button button-dark" type="button" data-coming-soon="숙소 목록 화면">숙소 컬렉션 보기 <span>→</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process-section" id="how-it-works" aria-labelledby="process-title">
+        <div class="container">
+          <div class="section-heading centered reveal">
+            <p class="eyebrow">HOW IT WORKS</p>
+            <h2 id="process-title">설렘만 챙기세요</h2>
+            <p>여행지를 고르는 순간부터 예약 확인까지, 흐름은 단순하게.</p>
+          </div>
+          <ol class="process-list">
+            <li class="reveal">
+              <span class="process-number">01</span>
+              <div class="process-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="14" cy="14" r="8" /><path d="m20 20 7 7" /></svg></div>
+              <h3>여행지 탐색</h3>
+              <p>지역과 취향에 맞는 여행지를 발견해요.</p>
+            </li>
+            <li class="reveal">
+              <span class="process-number">02</span>
+              <div class="process-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 27V12l11-7 11 7v15M10 27v-9h12v9" /></svg></div>
+              <h3>주변 숙소 선택</h3>
+              <p>위치와 정보를 비교해 머물 곳을 골라요.</p>
+            </li>
+            <li class="reveal">
+              <span class="process-number">03</span>
+              <div class="process-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="7" width="22" height="20" rx="2" /><path d="M10 4v6M22 4v6M5 13h22M11 20l3 3 7-7" /></svg></div>
+              <h3>예약 신청</h3>
+              <p>일정과 인원을 확인하고 예약을 신청해요.</p>
+            </li>
+            <li class="reveal">
+              <span class="process-number">04</span>
+              <div class="process-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 28s11-5.5 11-14V7l-11-3L5 7v7c0 8.5 11 14 11 14Z" /><path d="m11 16 3 3 7-7" /></svg></div>
+              <h3>관리자 확인</h3>
+              <p>숙소 가능 여부 확인 후 예약이 확정돼요.</p>
+            </li>
+          </ol>
+          <p class="process-notice">현재 첫 버전은 실시간 확정이 아닌 <strong>예약 신청 후 관리자 확인 방식</strong>으로 운영됩니다.</p>
+        </div>
+      </section>
+
+      <section class="journal-section" id="journal" aria-labelledby="journal-title">
+        <div class="container journal-inner reveal">
+          <div>
+            <p class="eyebrow light">TRAVEL JOURNAL</p>
+            <h2 id="journal-title">다음 여행을 위한<br />작은 영감</h2>
+          </div>
+          <p>계절마다 달라지는 풍경과 머무름의 이야기를 곧 전해드릴게요.</p>
+          <button class="button button-cream" type="button" data-coming-soon="여행 노트 화면">여행 노트 미리보기</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <div>
+          <a class="brand footer-brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M5 21.5c3.7-1.2 5.9-3.7 6.6-7.5.8 3.3 2.9 5.8 6.4 7.5M8 15.5c1-4 3-6.9 6-9 3 2.1 5 5 6 9" /></svg></span>
+            <span>머물다</span>
+          </a>
+          <p>여행지와 머무름을 잇는 가장 다정한 방법.</p>
+        </div>
+        <div class="footer-links">
+          <div><strong>서비스</strong><a href="#destinations">여행지</a><a href="#stays">숙소</a><a href="#how-it-works">이용 안내</a></div>
+          <div><strong>고객 지원</strong><button type="button" data-coming-soon="자주 묻는 질문">자주 묻는 질문</button><button type="button" data-coming-soon="문의하기 화면">문의하기</button></div>
+          <div><strong>정책</strong><button type="button" data-coming-soon="이용약관">이용약관</button><button type="button" data-coming-soon="개인정보 처리방침">개인정보 처리방침</button></div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© <span data-current-year></span> Meomulda. All rights reserved.</p>
+        <p>현재는 화면 구현 단계이며 실제 예약·결제는 처리되지 않습니다.</p>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" data-back-to-top aria-label="화면 맨 위로 이동" aria-hidden="true" tabindex="-1">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6" /></svg>
+    </button>
+
+    <dialog class="auth-dialog" data-auth-dialog aria-labelledby="auth-dialog-title">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="창 닫기">×</button>
+
+      <section class="auth-panel" data-auth-panel="signup" hidden>
+        <p class="eyebrow">JOIN MEOMULDA</p>
+        <h2 id="signup-dialog-title">회원가입</h2>
+        <p class="auth-intro">여행과 머무름을 잇는 여정을 시작하세요.</p>
+        <form class="auth-form" data-signup-form novalidate>
+          <div class="form-grid two-columns">
+            <label>이름<input name="name" type="text" autocomplete="name" maxlength="30" required /></label>
+            <label>연락처<input name="phone" type="tel" autocomplete="tel" maxlength="20" required /></label>
+          </div>
+          <label>이메일<input name="email" type="email" autocomplete="email" required /></label>
+          <div class="form-grid two-columns">
+            <label>비밀번호<input name="password" type="password" autocomplete="new-password" minlength="6" required /></label>
+            <label>비밀번호 확인<input name="passwordConfirm" type="password" autocomplete="new-password" minlength="6" required /></label>
+          </div>
+          <p class="form-help">비밀번호는 6자 이상 입력하고 다른 사이트와 다른 비밀번호를 사용하세요.</p>
+          <p class="auth-error" data-auth-error role="alert"></p>
+          <button class="button button-primary auth-submit" type="submit">회원가입</button>
+        </form>
+      </section>
+
+      <section class="auth-panel" data-auth-panel="login" hidden>
+        <p class="eyebrow">WELCOME BACK</p>
+        <h2 id="login-dialog-title">로그인</h2>
+        <p class="auth-intro">가입한 이메일과 비밀번호를 입력하세요.</p>
+        <form class="auth-form" data-login-form novalidate>
+          <label>이메일<input name="email" type="email" autocomplete="email" required /></label>
+          <label>비밀번호<input name="password" type="password" autocomplete="current-password" required /></label>
+          <p class="auth-error" data-auth-error role="alert"></p>
+          <button class="button button-primary auth-submit" type="submit">로그인</button>
+        </form>
+      </section>
+
+      <section class="auth-panel" data-auth-panel="admin-login" hidden>
+        <p class="eyebrow">ADMIN ACCESS</p>
+        <h2 id="admin-login-dialog-title">관리자 로그인</h2>
+        <p class="auth-intro">등록된 관리자 계정만 접근할 수 있습니다.</p>
+        <form class="auth-form" data-admin-login-form novalidate>
+          <label>아이디<input name="username" type="text" value="admin" autocomplete="username" readonly required /></label>
+          <label>비밀번호<input name="password" type="password" autocomplete="current-password" required /></label>
+          <p class="form-help">비밀번호는 Firebase Authentication에 등록된 관리자 계정의 비밀번호를 사용합니다.</p>
+          <p class="auth-error" data-auth-error role="alert"></p>
+          <button class="button button-primary auth-submit" type="submit">관리자 로그인</button>
+        </form>
+      </section>
+    </dialog>
+
+    <dialog class="message-dialog" data-message-dialog aria-labelledby="message-dialog-title">
+      <div class="message-symbol" aria-hidden="true">✓</div>
+      <h2 id="message-dialog-title">알림</h2>
+      <p data-message-text></p>
+      <button class="button button-primary" type="button" data-message-confirm>확인</button>
+    </dialog>
+
+    <div class="toast" data-toast role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

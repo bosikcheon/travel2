@@ -1,0 +1,160 @@
+.auth-dialog,
+.message-dialog {
+  width: min(560px, calc(100% - 30px));
+  max-height: calc(100dvh - 40px);
+  padding: 0;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 0 30px 90px rgba(15, 35, 27, 0.28);
+  overflow: auto;
+}
+
+.auth-dialog::backdrop,
+.message-dialog::backdrop {
+  background: rgba(12, 26, 21, 0.68);
+  backdrop-filter: blur(6px);
+}
+
+.dialog-close {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  color: var(--color-muted);
+  background: rgba(36, 72, 59, 0.08);
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.auth-panel {
+  padding: 46px;
+}
+
+.auth-panel h2,
+.message-dialog h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.auth-intro {
+  margin: 9px 0 28px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.form-grid.two-columns {
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 7px;
+  color: #384640;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.auth-form input {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.auth-form input[readonly] {
+  color: var(--color-muted);
+  background: #efede6;
+}
+
+.form-help,
+.auth-error {
+  margin: -5px 0 0;
+  font-size: 0.75rem;
+}
+
+.form-help {
+  color: var(--color-muted);
+}
+
+.auth-error {
+  min-height: 1.2em;
+  color: #a3392c;
+  font-weight: 700;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.auth-submit[disabled] {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.message-dialog {
+  width: min(400px, calc(100% - 30px));
+  padding: 38px;
+  text-align: center;
+}
+
+.message-symbol {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  place-items: center;
+  color: white;
+  background: var(--color-forest);
+  border-radius: 50%;
+  font-size: 1.4rem;
+}
+
+.message-dialog p {
+  margin: 12px 0 26px;
+  color: var(--color-muted);
+  white-space: pre-line;
+}
+
+.message-dialog .button {
+  width: 100%;
+}
+
+@media (max-width: 620px) {
+  .auth-panel {
+    padding: 42px 24px 28px;
+  }
+
+  .form-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .message-dialog {
+    padding: 32px 24px 24px;
+  }
+}

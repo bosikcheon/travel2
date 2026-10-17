@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="머물다 관리자 대시보드" />
+    <title>관리자 대시보드 | 머물다</title>
+    <link rel="stylesheet" href="../../css/common.css?v=4" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+    <script type="module" src="../../js/admin/dashboard.js?v=2"></script>
+  </head>
+  <body class="admin-body">
+    <a class="skip-link" href="#admin-content">관리 화면으로 바로가기</a>
+
+    <aside class="admin-sidebar" data-sidebar>
+      <a class="brand admin-brand" href="../../index.html" aria-label="머물다 메인으로 이동">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M5 21.5c3.7-1.2 5.9-3.7 6.6-7.5.8 3.3 2.9 5.8 6.4 7.5M8 15.5c1-4 3-6.9 6-9 3 2.1 5 5 6 9" /></svg></span>
+        <span>머물다</span>
+      </a>
+      <p class="admin-label">ADMIN CONSOLE</p>
+      <nav class="admin-navigation" aria-label="관리자 메뉴">
+        <button class="is-active" type="button" data-admin-view="overview"><span>⌂</span>대시보드</button>
+        <button type="button" data-admin-view="destinations"><span>⌖</span>여행지 등록·수정·삭제</button>
+        <button type="button" data-admin-view="stays"><span>▣</span>숙소 등록·수정·삭제</button>
+        <button type="button" data-admin-view="reservations"><span>✓</span>예약 확인</button>
+        <button type="button" data-admin-view="members"><span>○</span>회원정보</button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="../../index.html">사이트 보기</a>
+        <button type="button" data-admin-logout>관리자 로그아웃</button>
+      </div>
+    </aside>
+
+    <main class="admin-main" id="admin-content">
+      <header class="admin-topbar">
+        <button class="admin-menu-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-label="관리 메뉴 열기">☰</button>
+        <div>
+          <p data-view-kicker>OVERVIEW</p>
+          <h1 data-view-title>운영 현황</h1>
+        </div>
+        <div class="admin-account">
+          <span class="status-dot"></span>
+          <div><strong>관리자</strong><small data-admin-email>인증 확인 중</small></div>
+        </div>
+      </header>
+
+      <div class="admin-guard" data-admin-guard>
+        <div class="loader" aria-hidden="true"></div>
+        <p>관리자 권한을 확인하고 있습니다.</p>
+      </div>
+
+      <div class="admin-content" data-admin-app hidden>
+        <section class="admin-view is-active" data-view="overview" aria-labelledby="overview-title">
+          <div class="view-heading">
+            <div><p>오늘의 운영 상태를 한눈에 확인하세요.</p></div>
+            <time data-today></time>
+          </div>
+          <div class="metric-grid">
+            <article><span>전체 회원</span><strong data-metric="members">0</strong><small data-metric-sub="members">활성 회원 0명</small></article>
+            <article><span>공개 여행지</span><strong data-metric="destinations">0</strong><small>published 상태</small></article>
+            <article><span>활성 숙소</span><strong data-metric="stays">0</strong><small>예약 가능한 숙소</small></article>
+            <article class="accent"><span>확인할 예약</span><strong data-metric="reservations">0</strong><small>신청·취소 요청</small></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="admin-card">
+              <div class="card-heading"><div><span>RECENT BOOKINGS</span><h2>최근 예약</h2></div><button type="button" data-go-view="reservations">전체 보기 →</button></div>
+              <div class="table-wrap"><table><thead><tr><th>예약번호</th><th>회원</th><th>숙소</th><th>일정</th><th>상태</th></tr></thead><tbody data-recent-reservations></tbody></table></div>
+            </article>
+            <article class="admin-card quick-actions">
+              <div class="card-heading"><div><span>QUICK ACTIONS</span><h2>빠른 작업</h2></div></div>
+              <button type="button" data-new-item="destination"><span>＋</span><div><strong>여행지 등록</strong><small>새로운 여행지를 추가합니다.</small></div></button>
+              <button type="button" data-new-item="stay"><span>＋</span><div><strong>숙소 등록</strong><small>여행지 주변 숙소를 연결합니다.</small></div></button>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-view" data-view="destinations" aria-labelledby="destinations-admin-title" hidden>
+          <div class="view-heading action-heading"><div><h2 id="destinations-admin-title">여행지 관리</h2><p>여행지 정보를 등록하고 공개 상태를 관리합니다.</p></div><button class="button button-primary" type="button" data-new-item="destination">여행지 등록</button></div>
+          <div class="admin-card list-card">
+            <div class="list-tools"><label class="admin-search">검색<input type="search" placeholder="여행지명 또는 지역" data-list-search="destinations" /></label><span data-list-count="destinations">0개</span></div>
+            <div class="table-wrap"><table><thead><tr><th>여행지</th><th>지역</th><th>주소</th><th>상태</th><th>수정일</th><th>관리</th></tr></thead><tbody data-table="destinations"></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-view="stays" aria-labelledby="stays-admin-title" hidden>
+          <div class="view-heading action-heading"><div><h2 id="stays-admin-title">숙소 관리</h2><p>연결된 여행지, 가격과 운영 상태를 관리합니다.</p></div><button class="button button-primary" type="button" data-new-item="stay">숙소 등록</button></div>
+          <div class="admin-card list-card">
+            <div class="list-tools"><label class="admin-search">검색<input type="search" placeholder="숙소명 또는 주소" data-list-search="stays" /></label><span data-list-count="stays">0개</span></div>
+            <div class="table-wrap"><table><thead><tr><th>숙소</th><th>여행지</th><th>1박 가격</th><th>최대 인원</th><th>상태</th><th>관리</th></tr></thead><tbody data-table="stays"></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-view="reservations" aria-labelledby="reservations-admin-title" hidden>
+          <div class="view-heading action-heading"><div><h2 id="reservations-admin-title">예약 확인</h2><p>예약 신청 내용을 확인하고 허용된 상태로 변경합니다.</p></div></div>
+          <div class="admin-card list-card">
+            <div class="list-tools"><label class="admin-search">검색<input type="search" placeholder="예약번호, 회원 또는 숙소" data-list-search="reservations" /></label><span data-list-count="reservations">0개</span></div>
+            <div class="table-wrap"><table><thead><tr><th>예약번호</th><th>회원</th><th>숙소</th><th>체크인·아웃</th><th>인원</th><th>금액</th><th>상태</th><th>상세</th></tr></thead><tbody data-table="reservations"></tbody></table></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-view="members" aria-labelledby="members-admin-title" hidden>
+          <div class="view-heading action-heading"><div><h2 id="members-admin-title">회원정보</h2><p>회원 기본 정보와 이용 상태를 확인합니다. 비밀번호는 표시하거나 저장하지 않습니다.</p></div></div>
+          <div class="admin-card list-card">
+            <div class="list-tools"><label class="admin-search">검색<input type="search" placeholder="이름, 이메일 또는 연락처" data-list-search="members" /></label><span data-list-count="members">0명</span></div>
+            <div class="table-wrap"><table><thead><tr><th>회원</th><th>이메일</th><th>연락처</th><th>가입일</th><th>상태</th><th>관리</th></tr></thead><tbody data-table="members"></tbody></table></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <dialog class="editor-dialog" data-editor-dialog>
+      <button class="dialog-close" type="button" data-close-editor aria-label="창 닫기">×</button>
+      <form class="admin-form" data-destination-form hidden>
+        <input type="hidden" name="id" />
+        <p class="admin-form-kicker">DESTINATION</p><h2>여행지 등록</h2>
+        <div class="admin-form-grid"><label>여행지명<input name="name" required maxlength="60" /></label><label>지역<input name="region" required maxlength="40" /></label></div>
+        <label>주소<input name="address" required maxlength="120" /></label>
+        <label>한 줄 소개<input name="summary" required maxlength="120" /></label>
+        <label>상세 설명<textarea name="description" required rows="4"></textarea></label>
+        <label>대표 이미지 URL<input name="imageUrl" type="url" required /></label>
+        <label>공개 상태<select name="status"><option value="draft">작성 중</option><option value="published">공개</option><option value="hidden">숨김</option></select></label>
+        <p class="admin-form-error" data-form-error role="alert"></p><button class="button button-primary" type="submit">저장</button>
+      </form>
+      <form class="admin-form" data-stay-form hidden>
+        <input type="hidden" name="id" />
+        <p class="admin-form-kicker">STAY</p><h2>숙소 등록</h2>
+        <div class="admin-form-grid"><label>숙소명<input name="name" required maxlength="60" /></label><label>연결 여행지<select name="destinationId" required data-destination-options></select></label></div>
+        <label>주소<input name="address" required maxlength="120" /></label>
+        <label>숙소 설명<textarea name="description" required rows="4"></textarea></label>
+        <div class="admin-form-grid"><label>연락처<input name="phone" required maxlength="20" /></label><label>대표 이미지 URL<input name="imageUrl" type="url" required /></label></div>
+        <div class="admin-form-grid three"><label>1박 가격<input name="pricePerNight" type="number" min="0" step="1000" required /></label><label>최대 인원<input name="maxGuests" type="number" min="1" max="30" required /></label><label>상태<select name="status"><option value="active">운영 중</option><option value="inactive">비활성</option></select></label></div>
+        <p class="admin-form-error" data-form-error role="alert"></p><button class="button button-primary" type="submit">저장</button>
+      </form>
+    </dialog>
+
+    <dialog class="detail-dialog" data-detail-dialog>
+      <button class="dialog-close" type="button" data-close-detail aria-label="창 닫기">×</button>
+      <p class="admin-form-kicker">DETAIL</p><h2 data-detail-title>상세 정보</h2><dl data-detail-list></dl>
+      <button class="button button-dark" type="button" data-close-detail>닫기</button>
+    </dialog>
+
+    <dialog class="admin-message-dialog" data-admin-message-dialog>
+      <h2>알림</h2><p data-admin-message></p><button class="button button-primary" type="button" data-close-admin-message>확인</button>
+    </dialog>
+  </body>
+</html>
